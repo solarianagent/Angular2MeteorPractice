@@ -1,6 +1,7 @@
 <input #partyname>
 <input #partydescription>
-<button (click)="addParty(partyname.value, partydescription.value)">Add</button>
+<input #partyispublic type="checkbox">
+<button (click)="addParty(partyname.value, partydescription.value, partyispublic.checked)">Add</button>
 <ul>
 	<li *for="#party of parties">
 		<span (click)="selectParty(party)">
@@ -12,13 +13,15 @@
 	</li>
 </ul>
 
-<!--
-<party-details [partyid]="party._id"></party-details>
--->
-Here you will see and change the details of the party:
+<div *if="selectedParty">
+  	<button (click)="selectedParty = undefined">back</button>
+	Here you will see and change the details of the party:
 
-<input #selectedpartyname [value]="selectedParty.name">
-<input #selectedpartydescription [value]="selectedParty.description">
+	<input #selectedpartyname [value]="selectedParty.name">
+	<input #selectedpartydescription [value]="selectedParty.description">
+  	<input #selectedpartyispublic [value]="selectedParty.public" type="checkbox">
 
-<button (click)="saveParty(selectedpartyname.value, selectedpartydescription.value)">Save</button>
-<button (click)="selectParty()">Reset form</button>
+
+	<button (click)="saveParty(selectedpartyname.value, selectedpartydescription.value, selectedpartyispublic.checked)">Save</button>
+	<button (click)="selectParty()">Reset form</button>
+</div>

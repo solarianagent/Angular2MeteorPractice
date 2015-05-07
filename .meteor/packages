@@ -5,7 +5,9 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
 angular:angular2
 netanelgilad:angular2-typescript
+accounts-password
+accounts-ui
+accounts-facebook
+accounts-twitter

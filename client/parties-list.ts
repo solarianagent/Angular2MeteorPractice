@@ -1,5 +1,4 @@
 import {Component, View, bootstrap, For, If} from 'angular2/angular2';
-import {Parties} from 'model/parties';
 
 @Component({
     selector: 'parties-list'
@@ -9,24 +8,23 @@ import {Parties} from 'model/parties';
     directives: [For, If]
 })
 class PartiesList {
-    selectedParty: Object = {
-        name: '',
-        description: ''
-    };
-
+    selectedParty : Object;
     parties: Object;
 
     constructor() {
         var self = this;
+        Meteor.subscribe('parties');
         Tracker.autorun(zone.bind(function () {
             self.parties = Parties.find({}).fetch();
         }));
     }
 
-    addParty(name: string, description: string) {
+    addParty(name: string, description: string, isPublic: boolean) {
         Parties.insert({
+            owner : Meteor.userId(),
             name: name,
-            description: description
+            description: description,
+            public : isPublic
         });
     }
 
@@ -38,8 +36,8 @@ class PartiesList {
         this.selectedParty = party;
     }
 
-    saveParty(name: string, description: string) {
-        Parties.update(this.selectedParty._id, {$set: {name: name, description: description}});
+    saveParty(name: string, description: string, isPublic: boolean) {
+        Parties.update(this.selectedParty._id, {$set: {name: name, description: description, public: isPublic}});
     }
 }
 

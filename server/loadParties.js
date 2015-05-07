@@ -1,5 +1,3 @@
-Parties = new Mongo.Collection("parties");
-
 Meteor.startup(function () {
   if (Parties.find().count() === 0) {
 
@@ -16,4 +14,18 @@ Meteor.startup(function () {
       Parties.insert(parties[i]);
 
   }
+});
+
+Meteor.publish("parties", function () {
+  return Parties.find({
+    $or:[
+      {$and:[
+        {"public": true},
+        {"public": {$exists: true}}
+      ]},
+      {$and:[
+        {owner: this.userId},
+        {owner: {$exists: true}}
+      ]}
+    ]});
 });
