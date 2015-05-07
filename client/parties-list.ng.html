@@ -1,17 +1,19 @@
-<input #partyname>
-<input #partydescription>
-<input #partyispublic type="checkbox">
-<button (click)="addParty(partyname.value, partydescription.value, partyispublic.checked)">Add</button>
-<ul>
-	<li *for="#party of parties">
-		<span (click)="selectParty(party)">
-			{{ party.name }}
-			<br>
-			{{ party.description }}
-		</span>
-		<button (click)="remove(party)">X</button>
-	</li>
-</ul>
+<div *if="!selectedParty">
+	<input #partyname>
+	<input #partydescription>
+	<input #partyispublic type="checkbox">
+	<button (click)="addParty(partyname.value, partydescription.value, partyispublic.checked)">Add</button>
+	<ul>
+		<li *for="#party of parties">
+			<span (click)="selectParty(party)">
+				{{ party.name }}
+				<br>
+				{{ party.description }}
+			</span>
+			<button (click)="remove(party)">X</button>
+		</li>
+	</ul>
+</div>
 
 <div *if="selectedParty">
   	<button (click)="selectedParty = undefined">back</button>
