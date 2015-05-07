@@ -1,5 +1,5 @@
 <div *if="!selectedParty" class="main">
-	<form class="sidebar add-party col-1-4">
+	<div class="sidebar add-party col-1-4">
 		<h2>Add a Party:</h2>
 		<label for="partyname">Party Name:</label>
 		<input #partyname id="partyname" type="text">
@@ -9,7 +9,7 @@
 			<input #partyispublic type="checkbox" id="partyispublic">
 		</label>
 		<button (click)="addParty(partyname.value, partydescription.value, partyispublic.checked)">Add</button>
-	</form>
+	</div>
 	<div class="parties col-3-4">
 		<h2>Existing Parties:</h2>
 		<ul>
@@ -35,7 +35,7 @@
 		<button (click)="deselectParty()">&lt; back</button>
 	</div>
 
-	<form class="col-3-4">
+	<div class="col-3-4">
 		Here you will see and change the details of the party:
 		<label for="selected-partyname">Party Name:</label>
 		<input #selectedpartyname id="selected-partyname" [value]="selectedParty.name" type="text">
@@ -47,5 +47,5 @@
 
 		<button (click)="saveParty(selectedpartyname.value, selectedpartydescription.value, selectedpartyispublic.checked)">Save</button>
 		<button (click)="selectParty()">Reset form</button>
-	</form>
+	</div>
 </div>
