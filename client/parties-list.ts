@@ -16,6 +16,7 @@ class PartiesList {
         Meteor.subscribe('parties');
         Tracker.autorun(zone.bind(function () {
             self.parties = Parties.find({}).fetch();
+            self.selectedParty = Parties.findOne({ _id : Session.get('selectedPartyId') });
         }));
     }
 
@@ -32,8 +33,12 @@ class PartiesList {
         Parties.remove(party._id);
     }
 
+    deselectParty() {
+        Session.set('selectedPartyId', undefined);
+    }
+
     selectParty(party: Object) {
-        this.selectedParty = party;
+        Session.set('selectedPartyId', party._id);
     }
 
     saveParty(name: string, description: string, isPublic: boolean) {

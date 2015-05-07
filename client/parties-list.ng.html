@@ -16,12 +16,12 @@
 </div>
 
 <div *if="selectedParty">
-  	<button (click)="selectedParty = undefined">back</button>
+  	<button (click)="deselectParty()">back</button>
 	Here you will see and change the details of the party:
 
 	<input #selectedpartyname [value]="selectedParty.name">
 	<input #selectedpartydescription [value]="selectedParty.description">
-  	<input #selectedpartyispublic [value]="selectedParty.public" type="checkbox">
+  	<input #selectedpartyispublic [checked]="selectedParty.public" type="checkbox">
 
 
 	<button (click)="saveParty(selectedpartyname.value, selectedpartydescription.value, selectedpartyispublic.checked)">Save</button>
