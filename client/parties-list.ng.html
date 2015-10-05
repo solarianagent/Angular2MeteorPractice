@@ -1,33 +1,32 @@
 <div *if="!selectedParty" class="main">
-	<div class="sidebar add-party col-1-4">
-		<h2>Add a Party:</h2>
-		<label for="partyname">Party Name:</label>
-		<input #partyname id="partyname" type="text">
-		<label for="partydescription">Description:</label>
-		<textarea #partydescription id="partydescription"></textarea>
-		<label for="partyispublic">Is it public?
-			<input #partyispublic type="checkbox" id="partyispublic">
-		</label>
-		<button (click)="addParty(partyname.value, partydescription.value, partyispublic.checked)">Add</button>
-	</div>
-	<div class="parties col-3-4">
-		<h2>Existing Parties:</h2>
-		<ul>
-			<li *for="#party of parties">
-				<h3 class="party-name">
-					{{ party.name }}
-				</h3>
-				<span class="party-description">
-					{{ party.description }}
-				</span>
-				<button class="btn" (click)="selectParty(party)">
-					View &gt;
-				</button>
 
-				<button (click)="remove(party)">Delete</button>
-			</li>
-		</ul>
-	</div>
+	<add-party>
+		<span class="loading">Loading...</span>
+	</add-party>
+
+
+	<!-- <make-list-of-all-parties> -->
+		<div class="parties col-3-4">
+			<h2>Existing Parties:</h2>
+			<ul>
+				<li *for="#party of parties">
+					<h3 class="party-name">
+						{{ party.name }}
+					</h3>
+					<span class="party-description">
+						{{ party.description }}
+					</span>
+					<button class="btn" (click)="selectParty(party)">
+						View Party
+					</button>
+
+					<div *if="usersParty( party.owner )">
+						<button (click)="remove(party)">Delete</button>
+					</div>
+				</li>
+			</ul>
+		</div>
+	<!-- </make-list-of-all-parties> -->
 </div>
 
 <div *if="selectedParty">
@@ -45,7 +44,10 @@
 	  	<input #selectedpartyispublic [checked]="selectedParty.public" type="checkbox">
 	  </label>
 
-		<button (click)="saveParty(selectedpartyname.value, selectedpartydescription.value, selectedpartyispublic.checked)">Save</button>
-		<button (click)="selectParty()">Reset form</button>
+		<div *if="dontShow">
+			<button (click)="saveParty(selectedpartyname.value, selectedpartydescription.value, selectedpartyispublic.checked)">Save</button>
+			<button (click)="resetForm(selectedParty, selectedpartyname, selectedpartydescription, selectedpartyispublic)">Reset form</button>
+		</div>
 	</div>
 </div>
+<script>System.import( 'client/add-party' );</script>

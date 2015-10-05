@@ -1,0 +1,11 @@
+<div class="sidebar add-party col-1-4">
+  <h2>Add a Party:</h2>
+  <label for="partyname">Party Name:</label>
+  <input #partyname id="partyname" type="text">
+  <label for="partydescription">Description:</label>
+  <textarea #partydescription id="partydescription"></textarea>
+  <label for="partyispublic">Is it public?
+    <input #partyispublic type="checkbox" id="partyispublic">
+  </label>
+  <button (click)="addPParty(partyname.value, partydescription.value, partyispublic.checked)">Add</button>
+</div>
