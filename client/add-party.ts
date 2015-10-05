@@ -8,7 +8,7 @@ import {Component, View, bootstrap} from "angular2/angular2";
 class AddParty {
 
   constructor(){
-    console.log('helllo from AddParty!!!')
+    console.log('helllo from008755678756475747847-----')
   }
 
   addPParty( name: string, description: string, isPublic: boolean ){
