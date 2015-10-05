@@ -12,3 +12,4 @@ accounts-ui
 accounts-facebook
 accounts-twitter
 meteoric:ionic
+iron:router
