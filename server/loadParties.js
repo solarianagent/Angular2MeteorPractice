@@ -32,8 +32,8 @@ Meteor.publish( "adventures", function(){
 });
 
 var adventures = [
-  { 'type': 'Garage Sales' },
-  { 'type': 'Open Houses' },
+  { 'type': 'things to do' },
+  { 'type': "Other parties" },
   { 'type': 'Parties' }
 ];
 
