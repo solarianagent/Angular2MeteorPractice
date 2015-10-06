@@ -13,3 +13,9 @@ accounts-facebook
 accounts-twitter
 meteoric:ionic
 iron:router
+fourseven:scss@2.0.0
+meteoric:ionic-sass
+meteoric:ionicons-sass
+iron:layout
+meteoric:autoform-ionic
+useraccounts:ionic
